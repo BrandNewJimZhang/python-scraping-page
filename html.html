@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 HTML | Python 网络爬虫</title>
+  <meta name="description" content="test" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 HTML | Python 网络爬虫" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="test" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 HTML | Python 网络爬虫" />
+  
+  <meta name="twitter:description" content="test" />
+  
+
+<meta name="author" content="Jim Zhang" />
+
+
+<meta name="date" content="2022-11-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="http-协议简介.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Python 爬虫</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 前言</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#课程大纲"><i class="fa fa-check"></i><b>1.1</b> 课程大纲</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#section"><i class="fa fa-check"></i><b>1.2</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="网络爬虫简介.html"><a href="网络爬虫简介.html"><i class="fa fa-check"></i><b>2</b> 网络爬虫简介</a></li>
+<li class="chapter" data-level="3" data-path="http-协议简介.html"><a href="http-协议简介.html"><i class="fa fa-check"></i><b>3</b> HTTP 协议简介</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="http-协议简介.html"><a href="http-协议简介.html#web-客户端与服务器"><i class="fa fa-check"></i><b>3.1</b> Web 客户端与服务器</a></li>
+<li class="chapter" data-level="3.2" data-path="http-协议简介.html"><a href="http-协议简介.html#web-资源"><i class="fa fa-check"></i><b>3.2</b> Web 资源</a></li>
+<li class="chapter" data-level="3.3" data-path="http-协议简介.html"><a href="http-协议简介.html#mime-类型"><i class="fa fa-check"></i><b>3.3</b> MIME 类型</a></li>
+<li class="chapter" data-level="3.4" data-path="http-协议简介.html"><a href="http-协议简介.html#uri-和-url"><i class="fa fa-check"></i><b>3.4</b> URI 和 URL</a></li>
+<li class="chapter" data-level="3.5" data-path="http-协议简介.html"><a href="http-协议简介.html#事务"><i class="fa fa-check"></i><b>3.5</b> 事务</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="http-协议简介.html"><a href="http-协议简介.html#方法"><i class="fa fa-check"></i><b>3.5.1</b> 方法</a></li>
+<li class="chapter" data-level="3.5.2" data-path="http-协议简介.html"><a href="http-协议简介.html#状态码"><i class="fa fa-check"></i><b>3.5.2</b> 状态码</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="html.html"><a href="html.html"><i class="fa fa-check"></i><b>4</b> HTML</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+<li><a href="https://jimzhang.me" target="blank">Jim Zhang 的博客</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Python 网络爬虫</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="html" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> HTML<a href="html.html#html" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="http-协议简介.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["web-scraping-with-python.pdf", "web-scraping-with-python.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Be | Python 网络爬虫</title>
+  <meta name="description" content="test" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Be | Python 网络爬虫" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="test" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Be | Python 网络爬虫" />
+  
+  <meta name="twitter:description" content="test" />
+  
+
+<meta name="author" content="Jim Zhang" />
+
+
+<meta name="date" content="2022-11-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="html-简介.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Python 爬虫</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 前言</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#课程大纲"><i class="fa fa-check"></i><b>1.1</b> 课程大纲</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#section"><i class="fa fa-check"></i><b>1.2</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="网络爬虫简介.html"><a href="网络爬虫简介.html"><i class="fa fa-check"></i><b>2</b> 网络爬虫简介</a></li>
+<li class="chapter" data-level="3" data-path="http-协议简介.html"><a href="http-协议简介.html"><i class="fa fa-check"></i><b>3</b> HTTP 协议简介</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="http-协议简介.html"><a href="http-协议简介.html#web-客户端与服务器"><i class="fa fa-check"></i><b>3.1</b> Web 客户端与服务器</a></li>
+<li class="chapter" data-level="3.2" data-path="http-协议简介.html"><a href="http-协议简介.html#web-资源"><i class="fa fa-check"></i><b>3.2</b> Web 资源</a></li>
+<li class="chapter" data-level="3.3" data-path="http-协议简介.html"><a href="http-协议简介.html#mime-类型"><i class="fa fa-check"></i><b>3.3</b> MIME 类型</a></li>
+<li class="chapter" data-level="3.4" data-path="http-协议简介.html"><a href="http-协议简介.html#uri-和-url"><i class="fa fa-check"></i><b>3.4</b> URI 和 URL</a></li>
+<li class="chapter" data-level="3.5" data-path="http-协议简介.html"><a href="http-协议简介.html#事务"><i class="fa fa-check"></i><b>3.5</b> 事务</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="http-协议简介.html"><a href="http-协议简介.html#方法"><i class="fa fa-check"></i><b>3.5.1</b> 方法</a></li>
+<li class="chapter" data-level="3.5.2" data-path="http-协议简介.html"><a href="http-协议简介.html#状态码"><i class="fa fa-check"></i><b>3.5.2</b> 状态码</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="html-简介.html"><a href="html-简介.html"><i class="fa fa-check"></i><b>4</b> HTML 简介</a></li>
+<li class="chapter" data-level="5" data-path="be.html"><a href="be.html"><i class="fa fa-check"></i><b>5</b> Be</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="be.html"><a href="be.html#安装"><i class="fa fa-check"></i><b>5.1</b> 安装</a></li>
+<li class="chapter" data-level="5.2" data-path="be.html"><a href="be.html#beautifulsoup"><i class="fa fa-check"></i><b>5.2</b> BeautifulSoup</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="be.html"><a href="be.html#本地-html-文件"><i class="fa fa-check"></i><b>5.2.1</b> 本地 html 文件</a></li>
+<li class="chapter" data-level="5.2.2" data-path="be.html"><a href="be.html#网页"><i class="fa fa-check"></i><b>5.2.2</b> 网页</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+<li><a href="https://jimzhang.me" target="blank">Jim Zhang 的博客</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Python 网络爬虫</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="be" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Be<a href="be.html#be" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="安装" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> 安装<a href="be.html#安装" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>BeautifulSoup 得名于《爱丽丝梦游仙境》第十章：</p>
+<blockquote>
+<p>Beautiful Soup, so rich and green,<br/>
+Waiting in a hot tureen!<br/>
+Who for such dainties would not stoop?<br/>
+Soup of the evening, beautiful Soup!<br/>
+Soup of the evening, beautiful Soup!<br/>
+…<br/>
+Chapter 10, Alice’s Adventures in Wonderland, Lewis Carroll.</p>
+</blockquote>
+<p>意为“化腐朽为神奇”。BeautifulSoup 和 Selenium 的安装很方便，只需要一行命令：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="be.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install BeautifulSoup4, selenium</span></code></pre></div>
+<p>请注意，不是 <code>pip install BeautifulSoup</code>，而是 <code>pip install BeautifulSoup4</code>，因为前者指的是 <code>BeautifulSoup3</code>。</p>
+<p>安装完成后，我们可以通过 <code>python</code> 交互式控制台来检验是否成功安装，比如：</p>
+<pre class="text"><code>Python 3.10.7 (tags/v3.10.7:6cc6b13, Sep  5 2022, 14:08:36) [MSC v.1933 64 bit (AMD64)] on win32
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; from bs4 import BeautifulSoup, import selenium
+&gt;&gt;&gt;</code></pre>
+<p>如果没有报错信息，就代表安装成功啦。</p>
+</div>
+<div id="beautifulsoup" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> BeautifulSoup<a href="be.html#beautifulsoup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="本地-html-文件" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> 本地 html 文件<a href="be.html#本地-html-文件" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>首先，我们可以先用一个本地 html 文件做测试，这个文件内容如下：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="be.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--test.html--&gt;</span></span>
+<span id="cb4-2"><a href="be.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb4-3"><a href="be.html#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;head&gt;</span></span>
+<span id="cb4-4"><a href="be.html#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;title&gt;</span>这是测试。<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb4-5"><a href="be.html#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb4-6"><a href="be.html#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;body&gt;</span></span>
+<span id="cb4-7"><a href="be.html#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;h1&gt;</span>Test<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb4-8"><a href="be.html#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;p&gt;</span>这是一个测试。<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb4-9"><a href="be.html#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;p&gt;</span>这是第二个测试。<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb4-10"><a href="be.html#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb4-11"><a href="be.html#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<p>它对应的 DOM（Document Object Model，文档对象模型）树如下：</p>
+<pre class="text"><code>Document
+└── html
+    ├── head
+    │   └── title
+    └── body
+        ├── h1
+        ├── p
+        └── p</code></pre>
+<p>这个树形结构为我们讲述了如下信息：</p>
+<ul>
+<li><code>Document</code> 是整个文档的根节点，它的子节点是 <code>html</code>。</li>
+<li><code>html</code> 是文档的根元素，它的子节点是 <code>head</code>、<code>body</code> 等。</li>
+<li><code>head</code> 是文档的头部，它的子节点是 <code>title</code> 等。</li>
+<li><code>body</code> 是文档的主体，它的子节点是 <code>h1</code>、<code>p</code> 等。</li>
+<li><code>title</code>、<code>h1</code>、<code>p</code> 等都是文档的叶子节点，它们没有子节点。</li>
+</ul>
+<p>然后，我们可以通过 <code>BeautifulSoup</code> 来读取这个文件，代码如下：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="be.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb6-2"><a href="be.html#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="be.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;test.html&#39;</span>, <span class="st">&#39;r&#39;</span>, encoding<span class="op">=</span><span class="st">&#39;utf-8&#39;</span>) <span class="im">as</span> f:</span>
+<span id="cb6-4"><a href="be.html#cb6-4" aria-hidden="true" tabindex="-1"></a>    soup <span class="op">=</span> BeautifulSoup(f, <span class="st">&#39;html.parser&#39;</span>)</span>
+<span id="cb6-5"><a href="be.html#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="be.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(soup)</span></code></pre></div>
+<p>输出结果如下：</p>
+<pre class="text"><code>&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;这是测试。&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Test&lt;/h1&gt;
+&lt;p&gt;这是一个测试。&lt;/p&gt;
+&lt;p&gt;这是第二个测试。&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>这样，我们就可以通过 <code>soup</code> 来访问这个 html 文件了。进一步地，我们可以通过 <code>soup</code> 来访问它的子节点，比如：</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="be.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(soup.html.head.title)</span></code></pre></div>
+<p>输出结果如下：</p>
+<pre class="text"><code>&lt;title&gt;这是测试。&lt;/title&gt;</code></pre>
+<p>我们可以看到，<code>soup.html.head.title</code> 就是 <code>title</code> 节点，对于整个文档唯一的节点（<code>title</code> 就是这样），我们可以通过 <code>soup.title</code> 来直接访问它。但是对于非唯一的节点就比较麻烦，比如第一个 <code>p</code> 节点，我们可以通过 <code>soup.body.p</code> 来访问它，但是如果我们想要访问第二个 <code>p</code> 节点，就没办法了。这时候，我们可以通过 <code>find_all</code> 方法来访问它们，比如：</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="be.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(soup.find_all(<span class="st">&#39;p&#39;</span>))</span></code></pre></div>
+<p>输出结果如下：</p>
+<pre class="text"><code>[&lt;p&gt;这是一个测试。&lt;/p&gt;, &lt;p&gt;这是第二个测试。&lt;/p&gt;]</code></pre>
+<p>获取标签中的内容，对每个 <code>tag</code> 使用 <code>text</code> 属性即可，比如：</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="be.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(soup.title.text)</span></code></pre></div>
+<p>输出结果如下：</p>
+<pre class="text"><code>这是测试。</code></pre>
+</div>
+<div id="网页" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> 网页<a href="be.html#网页" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>接下来，我们来看看如何使用 <code>BeautifulSoup</code> 来爬取网页。首先，为了利用python 帮我们完成发送请求的操作，我们需要导入 <code>requests</code> 库（安装方法我们就不重复介绍了），然后通过 <code>requests</code> 来获取网页的内容。</p>
+<p>现在有这样一个网页：<a href="https://q-weather.info/weather/54399/history/?date=2022-09-16">https://q-weather.info/weather/54399/history/?date=2022-09-16</a>，其内容大致如下</p>
+<p><img src="./posts/beautifulsoup-and-selenium/1.png" /></p>
+<p>存储了海淀区的天气信息。现在想获取这个网页数据，我们如下操作：</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="be.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests, pandas <span class="im">as</span> pd</span>
+<span id="cb14-2"><a href="be.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb14-3"><a href="be.html#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="be.html#cb14-4" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">&#39;https://q-weather.info/weather/54399/history/&#39;</span></span>
+<span id="cb14-5"><a href="be.html#cb14-5" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {<span class="st">&#39;date&#39;</span>: <span class="st">&#39;2022-09-16&#39;</span>}</span>
+<span id="cb14-6"><a href="be.html#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="be.html#cb14-7" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.get(url, params<span class="op">=</span>params)</span>
+<span id="cb14-8"><a href="be.html#cb14-8" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> BeautifulSoup(r.text, <span class="st">&#39;html.parser&#39;</span>)</span></code></pre></div>
+<p>这样这个 <code>soup</code> 就存储这个网页的内容了。接下来的任务显而易见：首先获取表格的标题行，然后是数据单元格，最后是把他们存储起来。</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="be.html#cb15-1" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> soup.table</span>
+<span id="cb15-2"><a href="be.html#cb15-2" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [th.text <span class="cf">for</span> th <span class="kw">in</span> table.thead.find_all(<span class="st">&#39;th&#39;</span>)]</span>
+<span id="cb15-3"><a href="be.html#cb15-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [[td.text <span class="cf">for</span> td <span class="kw">in</span> tr.find_all(<span class="st">&#39;td&#39;</span>)] <span class="cf">for</span> tr <span class="kw">in</span> table.tbody.find_all(<span class="st">&#39;tr&#39;</span>)]</span>
+<span id="cb15-4"><a href="be.html#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="be.html#cb15-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data, columns<span class="op">=</span>columns)</span>
+<span id="cb15-6"><a href="be.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head)</span></code></pre></div>
+<p>输出结果如下：</p>
+<pre class="text"><code>                        时次  瞬时温度    地面气压 相对湿度     瞬时风向 瞬时风速 1小时极大风速 1小时降水 10分钟平均能见度
+0   2022-09-16 01:00 +0800  20.1  1002.5   87           0.0     0.4   0.0       9.3
+1   2022-09-16 02:00 +0800  19.5  1002.1   91    45/NE  0.5     0.5   0.0       5.4
+2   2022-09-16 03:00 +0800  19.2  1001.9   91  290/WNW  1.4     1.6   0.0       8.1
+3   2022-09-16 04:00 +0800  19.6  1001.7   92   25/NNE  0.3     2.1   0.0       4.9
+4   2022-09-16 05:00 +0800  18.9  1001.7   93   28/NNE  0.4     1.0   0.0       4.0</code></pre>
+<p>这就是 <code>BeautifulSoup</code> 的基本用法了，更多的用法可以参考官方文档：<a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">https://www.crummy.com/software/BeautifulSoup/bs4/doc/</a></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="html-简介.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["web-scraping-with-python.pdf", "web-scraping-with-python.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
